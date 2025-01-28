@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>ShopEase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Liste de Produits</h1>
+
+<!-- Champ de recherche -->
+<input type="text" id="recherche_input" placeholder="Rechercher" />
+<button id="reinitialiser_bouton">Réinitialiser</button>
+
+<!-- Tableau des produits -->
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Prix (€)</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="tableau_produits">
+        <!-- les lignes vont être insérées ici -->
+    </tbody>
+</table>
+
+<!-- Affichage du total -->
+<p>Total des prix : <span id="prix_total">0</span> €</p>
+
+<script src="index.js"></script>
+
+</body>
+</html>
