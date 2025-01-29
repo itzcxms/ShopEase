@@ -1,4 +1,4 @@
-const liste_produits = [
+let liste_produits = [
     { id: 1, nom: "Thé vert", prix: 12.99 },
     { id: 2, nom: "Café Arabica", prix: 8.99 },
     { id: 3, nom: "Infusion Camomille", prix: 5.49 },
@@ -30,22 +30,34 @@ function afficher_produits(produits) {
     });
 
     // calcul du prix et affichage
-    let total = produits.reduce((sum, produit) => sum + produit.prix, 0);
-    prix_total.textContent = total;
+    prix_total.textContent = produits.reduce((sum, produit) => sum + produit.prix, 0);
 
 }
 
 function filtrage_produits() {
+    // on recupere le contenu qu'on a ecrit dans la barre de recherche
     let contenu = recherche_input.value;
-    let produits_filtres = produits.filter(produit => produit.nom.includes(contenu))
+    // on filtre si le contenu est inclus dans le nom d'un produit de notre liste
+    let produits_filtres = liste_produits.filter(produit => produit.nom.includes(contenu))
+    // on affiche seulement ceux qui répondent à la condition
     afficher_produits(produits_filtres)
 }
 
 // fonction pour supprimer un produit
+function supprimer_produit(id) {
+    // meme principe que le filtrage mais on regarde l'id direct
+    liste_produits = liste_produits.filter(produit => produit.id !== id);
+    // on rappelle la fonction pour afficher sans le produit supprimé
+    afficher_produits(liste_produits)
+}
 
-// Événement sur le champ de recherche
-recherche_input.addEventListener("keyup", filterProducts);
+// lancer la fonction quand on écrit dans la barre de recherche
+recherche_input.addEventListener("keyup", filtrage_produits);
 
-// réinitialiser
+// on supprime ce qu'il y a dans la barre de recherche
+reinitialiser_bouton.addEventListener("click", () => {
+    recherche_input.value = "";
+    afficher_produits(liste_produits);
+});
 
 afficher_produits(liste_produits);
